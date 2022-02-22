@@ -1,36 +1,20 @@
 package com.hyades.config;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:/application.properties")
 public class DBConfig {
-
-    @Bean
-    @ConfigurationProperties(prefix="spring.datasource")
-    public HikariConfig hikariConfig() {
-        return new HikariConfig();
-    }
 
     @Bean
     @ConfigurationProperties(prefix="mybatis.configuration")
     public org.apache.ibatis.session.Configuration mybatisConfig(){
         return new org.apache.ibatis.session.Configuration();
-    }
-
-    @Bean
-    public DataSource dataSource() throws Exception{
-        DataSource dataSource = new HikariDataSource(hikariConfig());
-        return dataSource;
     }
 
     @Bean

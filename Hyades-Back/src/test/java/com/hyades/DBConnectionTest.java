@@ -1,5 +1,6 @@
 package com.hyades;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,7 @@ public class DBConnectionTest {
             System.out.println(con);
         } catch (Exception e){
             e.printStackTrace();
+            Assertions.fail();
         }
     }
 }
