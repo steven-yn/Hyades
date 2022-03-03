@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.35);
   z-index: 5;
   color: black;
   background: white;
