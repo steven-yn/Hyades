@@ -12,60 +12,60 @@ const HeaderBlock = styled.div`
   width: 100%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
   z-index: 5;
-
-  color: white;
-  background: ${Palette.gray[8]};
+  color: black;
+  background: white;
 `;
 
 /**
  * Responsive 컴포넌트의 속성에 스타일을 추가해서 새로운 컴포넌트 생성
  */
 const Wrapper = styled(Responsive)`
-  height: 7.5rem;
   display: flex;
+  height: 7.5rem;
   align-items: center;
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   overflow: hidden;
-  .rightBox {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  .rightlast {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.5rem;
-  }
-  .menuBarBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin-right: 0.5rem;
-  }
-  .userBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-left: 0.5rem;
-    padding-left: 0.5rem;
-  }
   .logo {
-    font-size: 3.5rem;
-    font-weight: 500;
-    letter-spacing: 15px;
-
+    font-size: 2.0rem;
+    letter-spacing: 10px;
     @media screen and (max-width: 375px) {
       width: 5rem;
     }
   }
-  .vr {
+
+  .rightBox {
+    display: flex;
     height: 100%;
-    border: 1px solid ${Palette.gray[7]};
+    align-items: center;
+    .menuBarBox {
+    display: flex;
+    li{
+      padding-left: 3rem;
+      cursor: pointer;
+      &:hover {
+        color: ${Palette.Red[7]};
+      }
+    }
+    }
+    .authBox{
+      display: flex;
+      cursor: pointer;
+      ul{
+        &:hover {
+        color: ${Palette.Red[7]};
+        }
+      }
+      img{  
+       width: 30px;
+       height: 30px;
+       border-radius: 100%;
+       margin-left:  3rem;
+     }
+     button{
+       border: none;
+       margin-left: 0.5rem;
+     }
+    }
   }
 `;
 
@@ -76,54 +76,36 @@ const Spacer = styled.div`
   height: 7.5rem;
 `;
 
-const UserInfo = styled.div`
-  font-weight: 800;
-  margin-right: 1rem;
-  margin-top: 0.2rem;
-`;
-
 const Header = ({ user, onLogout }) => {
   return (
     <>
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">
-            PSG
+            Hyades
           </Link>
           <div className="rightBox">
             <ul className="menuBarBox">
-              <Button>List</Button>
-              <Button>Crew</Button>
-              <Button>Notice</Button>
+              <Link to="/crew"><li>CREW</li></Link>
+              <Link to="/notice"><li>NOTICE</li></Link>
             </ul>
-
-            <div className="vr"></div>
-
             {user ? (
               user.username === "admin" ? (
-                <div className="userBox">
-                  <div className="right">
-                    <Button>프로필</Button>
-                    <UserInfo>{user.username}</UserInfo>
-                    <Button onClick={onLogout}>로그아웃</Button>
-                  </div>
-                  <div className="rightlast">
-                    <Button to="/admin">관리자 페이지</Button>
-                  </div>
+                <div className="authBox">
+                  <img src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`} />
+                  <button>LOGOUT</button>
+                  <button>ADMINPAGE</button>
                 </div>
               ) : (
-                <div className="userBox">
-                  <div className="userImgBox">
-                    <Button>프로필</Button>
-                    <UserInfo>{user.username}</UserInfo>
-                    <Button onClick={onLogout}>로그아웃</Button>
-                  </div>
+                <div className="authBox">
+                  <img src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`} />
+                  <button>LOGOUT</button>
                 </div>
               )
             ) : (
-              <div className="buttonBox">
-                <Button to="/login">로그인</Button>
-                <Button to="/register">회원가입</Button>
+              <div className="authBox">
+                <ul>LOGIN</ul>
+                <ul>SIGNUP</ul>
               </div>
             )}
           </div>
