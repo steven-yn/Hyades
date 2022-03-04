@@ -1,10 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import Responsive from "./Responsive";
-import Button from "./Button";
 import Palette from "../../lib/Palette";
 import { Link } from "react-router-dom";
-
 // 제공해드린 Button 컴포넌트는 인터페이스가 살짝 바뀔수 있습니다.
 
 const HeaderBlock = styled.div`
@@ -32,7 +30,6 @@ const Wrapper = styled(Responsive)`
       width: 5rem;
     }
   }
-
   .rightBox {
     display: flex;
     height: 100%;
@@ -82,7 +79,7 @@ const Header = ({ user, onLogout }) => {
       <HeaderBlock>
         <Wrapper>
           <Link to="/" className="logo">
-            Hyades
+            PSG
           </Link>
           <div className="rightBox">
             <ul className="menuBarBox">
