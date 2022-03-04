@@ -1,25 +1,27 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Palette from "../../lib/Palette";
 
 const buttonStyle = css`
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  background: transparent;
+  font-size: 1.5rem;
   font-weight: bold;
-  padding: 0.25rem 1rem;
-  color: white;
+  letter-spacing: 2px;
+  color: ${({fontcolor}) => fontcolor ? fontcolor : "white"};
   outline: none;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
-  background: ${Palette.gray[8]};
-  &:hover {
-    background: ${Palette.gray[6]};
-  }
+  ${({hovercolor}) => !hovercolor && css`
+    border: ${({fontcolor}) => `2px solid ${fontcolor}`};
+    padding: 0.3rem 0.5rem 0.4rem 0.6rem;
+  `}
 
-  ${(props) =>
-    props.fullWidth &&
+  ${({fullWidth}) =>
+    fullWidth &&
     css`
       padding-top: 0.75rem;
       padding-bottom: 0.75rem;
@@ -27,14 +29,14 @@ const buttonStyle = css`
       font-size: 1.125rem;
     `}
 
-  ${(props) =>
-    props.cyan &&
-    css`
-      background: ${Palette.cyan[5]};
-      &:hover {
-        background: ${Palette.cyan[4]};
-      }
+  &:hover{
+    ${({hovercolor}) => hovercolor ? css`
+      color: ${({hovercolor}) => hovercolor};
+    ` : css`
+      background-color: ${({fontcolor}) => fontcolor};
+      color: white;
     `}
+  }
 
     &:disabled {
     background: ${Palette.gray[3]};
@@ -43,20 +45,15 @@ const buttonStyle = css`
   }
 `;
 
-const StyledButton = styled.button`
+const Button = styled.button.attrs(({to}) => ({
+  as : to && NavLink
+}))`
   ${buttonStyle}
+  ${({to}) => to && css`
+    &.active{
+      color: ${({hovercolor}) => hovercolor}
+    }
+  `}
 `;
-
-const StyledLink = styled(Link)`
-  ${buttonStyle}
-`;
-
-const Button = (props) => {
-  return props.to ? (
-    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
-  ) : (
-    <StyledButton {...props} />
-  );
-};
 
 export default Button;
