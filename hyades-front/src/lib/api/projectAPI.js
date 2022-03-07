@@ -8,7 +8,7 @@ const req = {
   post(url, payload) {
     return axios({
       method: "post",
-      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api",
+      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api/project",
       url: url,
       headers: { "create-project-request": "XMLHttpRequest" },
       data: JSON.stringify(payload),
@@ -20,7 +20,7 @@ const req = {
   getList(url) {
     return axios({
       method: "get",
-      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api",
+      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api/project",
       url: url,
       headers: { "get-projects-request": "XMLHttpRequest" },
       timeout: 7000,
@@ -30,7 +30,7 @@ const req = {
   get(url) {
     return axios({
       method: "get",
-      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api",
+      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api/project",
       url: url,
       headers: { "get-one-project-request": "XMLHttpRequest" },
       //params: id,
@@ -42,7 +42,7 @@ const req = {
   patch(url, payload) {
     return axios({
       method: "patch",
-      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api",
+      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api/project",
       url: url,
       //params: id,
       headers: { "patch-project-request": "XMLHttpRequest" },
@@ -55,7 +55,7 @@ const req = {
   delete(url) {
     return axios({
       method: "delete",
-      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api",
+      baseURL: "https://yoonocean-zum-board-backend.herokuapp.com/api/project",
       url: url,
       //params: id,
       headers: { "delete-project-request": "XMLHttpRequest" },

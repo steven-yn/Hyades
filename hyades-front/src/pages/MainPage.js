@@ -3,6 +3,11 @@ import WelcomeReact from "../components/WelcomeReact";
 
 const MainPage = () => {
   // 추후 컨테이너 컴포넌트들로 변경
+
+  const user = {
+    username: "tester",
+  };
+
   return (
     <>
       <Header />

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Responsive from "./Responsive";
 import Palette from "../../lib/Palette";
 import { Link } from "react-router-dom";
+import { Button, BorderButton } from "./Button";
 // 제공해드린 Button 컴포넌트는 인터페이스가 살짝 바뀔수 있습니다.
 
 const HeaderBlock = styled.div`
@@ -24,46 +25,52 @@ const Wrapper = styled(Responsive)`
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
   overflow: hidden;
   .logo {
-    font-size: 2.0rem;
+    font-size: 3rem;
     letter-spacing: 10px;
     @media screen and (max-width: 375px) {
       width: 5rem;
     }
   }
+  .menuBarBox {
+    display: inherit;
+    cursor: pointer;
+
+    li {
+      margin-right: 8rem;
+    }
+  }
+
+  .leftBox {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+
   .rightBox {
     display: flex;
     height: 100%;
     align-items: center;
-    .menuBarBox {
-    display: flex;
-    li{
-      padding-left: 3rem;
-      cursor: pointer;
-      &:hover {
-        color: ${Palette.Red[7]};
-      }
-    }
-    }
-    .authBox{
+
+    .authBox {
       display: flex;
       cursor: pointer;
-      ul{
-        &:hover {
-        color: ${Palette.Red[7]};
-        }
+
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        margin-left: 3rem;
       }
-      img{  
-       width: 30px;
-       height: 30px;
-       border-radius: 100%;
-       margin-left:  3rem;
-     }
-     button{
-       border: none;
-       margin-left: 0.5rem;
-     }
+      button {
+        border: none;
+        margin-left: 0.5rem;
+      }
     }
   }
+`;
+
+const MenuButton = styled(BorderButton)`
+  margin-left: 4rem;
 `;
 
 /**
@@ -78,31 +85,37 @@ const Header = ({ user, onLogout }) => {
     <>
       <HeaderBlock>
         <Wrapper>
-          <Link to="/" className="logo">
-            PSG
-          </Link>
+          <div className="leftBox">
+            <Link to="/" className="logo">
+              PSG
+            </Link>
+            <MenuButton to="/notice" fontcolor={"teal"}>
+              NOTICE
+            </MenuButton>
+          </div>
+
           <div className="rightBox">
-            <ul className="menuBarBox">
-              <Link to="/crew"><li>CREW</li></Link>
-              <Link to="/notice"><li>NOTICE</li></Link>
-            </ul>
             {user ? (
               user.username === "admin" ? (
                 <div className="authBox">
-                  <img src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`} />
-                  <button>LOGOUT</button>
-                  <button>ADMINPAGE</button>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`}
+                  />
+                  <Button>LOGOUT</Button>
+                  <Button>ADMINPAGE</Button>
                 </div>
               ) : (
                 <div className="authBox">
-                  <img src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`} />
-                  <button>LOGOUT</button>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`}
+                  />
+                  <Button fontcolor={"black"}>LOGOUT</Button>
                 </div>
               )
             ) : (
               <div className="authBox">
-                <ul>LOGIN</ul>
-                <ul>SIGNUP</ul>
+                <Button fontcolor={"orange"}>LOGIN</Button>
+                <Button fontcolor={"purple"}>SIGNUP</Button>
               </div>
             )}
           </div>
