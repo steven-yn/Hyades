@@ -1,6 +1,20 @@
 // source: https://yeun.github.io/open-color/
 
-const Palette = {
+interface Color {
+  gray: any;
+  blue: any;
+  cyan: any;
+  red: any;
+  pink: any;
+  grape: any;
+  teal: any;
+  green: any;
+  lime: any;
+  yellow: any;
+  orange: any;
+}
+
+const Palette: Color = {
   gray: [
     "#f8f9fa",
     "#f1f3f5",
@@ -13,7 +27,7 @@ const Palette = {
     "#343a40",
     "#212529",
   ],
-  Blue: [
+  blue: [
     "#e7f5ff",
     "#d0ebff",
     "#a5d8ff",
@@ -38,7 +52,7 @@ const Palette = {
     "#0c8599",
     "#0b7285",
   ],
-  Red: [
+  red: [
     "#fff5f5",
     "#ffe3e3",
     "#ffc9c9",
@@ -50,7 +64,7 @@ const Palette = {
     "#e03131",
     "#c92a2a",
   ],
-  Pink: [
+  pink: [
     "#fff0f6",
     "#ffdeeb",
     "#fcc2d7",
@@ -62,7 +76,7 @@ const Palette = {
     "#c2255c",
     "#a61e4d",
   ],
-  Grape: [
+  grape: [
     "#f8f0fc",
     "#f3d9fa",
     "#eebefa",
@@ -75,7 +89,7 @@ const Palette = {
     "#862e9c",
   ],
   // better than darkest
-  Teal: [
+  teal: [
     "#e6fcf5",
     "#c3fae8",
     "#96f2d7",
@@ -87,7 +101,7 @@ const Palette = {
     "#099268",
     "#087f5b",
   ],
-  Green: [
+  green: [
     "#ebfbee",
     "#d3f9d8",
     "#b2f2bb",
@@ -99,7 +113,7 @@ const Palette = {
     "#2f9e44",
     "#2b8a3e",
   ],
-  Lime: [
+  lime: [
     "#f4fce3",
     "#e9fac8",
     "#d8f5a2",
@@ -111,7 +125,7 @@ const Palette = {
     "#66a80f",
     "#5c940d",
   ],
-  Yellow: [
+  yellow: [
     "#fff9db",
     "#fff3bf",
     "#ffec99",
@@ -123,7 +137,7 @@ const Palette = {
     "#f08c00",
     "#e67700",
   ],
-  Orange: [
+  orange: [
     "#fff4e6",
     "#ffe8cc",
     "#ffd8a8",

@@ -1,9 +1,8 @@
-import * as React from "react";
 import styled from "styled-components";
 import Responsive from "./Responsive";
-import Palette from "../../lib/Palette";
-import { Link } from "react-router-dom";
 import { Button, BorderButton } from "./Button";
+import { Link } from "react-router-dom";
+
 // 제공해드린 Button 컴포넌트는 인터페이스가 살짝 바뀔수 있습니다.
 
 const HeaderBlock = styled.div`
@@ -80,7 +79,43 @@ const Spacer = styled.div`
   height: 7.5rem;
 `;
 
-const Header = ({ user, onLogout }) => {
+const UserSelection = ({ user }: any) => {
+  if (!user.username) {
+    return (
+      <div className="authBox">
+        <Button fullWidth={null} to={null} fontcolor={"orange"}>
+          GoogleLogin
+        </Button>
+      </div>
+    );
+  }
+
+  if (user.username === "admin") {
+    return (
+      <div className="authBox">
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`}
+        />
+        <Button>LOGOUT</Button>
+        <Button>ADMINPAGE</Button>
+      </div>
+    );
+  } else {
+    return (
+      <div className="authBox">
+        <Link to="/mypage">
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`}
+          />
+        </Link>
+
+        <Button fontcolor={"black"}>LOGOUT</Button>
+      </div>
+    );
+  }
+};
+
+const Header = ({ user }: any) => {
   return (
     <>
       <HeaderBlock>
@@ -95,29 +130,7 @@ const Header = ({ user, onLogout }) => {
           </div>
 
           <div className="rightBox">
-            {user ? (
-              user.username === "admin" ? (
-                <div className="authBox">
-                  <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`}
-                  />
-                  <Button>LOGOUT</Button>
-                  <Button>ADMINPAGE</Button>
-                </div>
-              ) : (
-                <div className="authBox">
-                  <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/profile_image.webp`}
-                  />
-                  <Button fontcolor={"black"}>LOGOUT</Button>
-                </div>
-              )
-            ) : (
-              <div className="authBox">
-                <Button fontcolor={"orange"}>LOGIN</Button>
-                <Button fontcolor={"purple"}>SIGNUP</Button>
-              </div>
-            )}
+            <UserSelection user={user} />
           </div>
         </Wrapper>
       </HeaderBlock>

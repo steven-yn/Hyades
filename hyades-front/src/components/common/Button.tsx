@@ -3,6 +3,13 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Palette from "../../lib/Palette";
 
+type Props = {
+  to: any;
+  fontcolor: any;
+  fullWidth: any;
+  children: any;
+};
+
 const buttonStyle = css`
   border: none;
   border-radius: 4px;
@@ -10,7 +17,7 @@ const buttonStyle = css`
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 2px;
-  color: ${(props) => (props.fontcolor ? props.fontcolor : "black")};
+  color: ${(props: Props) => (props.fontcolor ? props.fontcolor : "black")};
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -57,11 +64,11 @@ const BorderStyledLink = styled(Link)`
   border-color: ${(props) => props.fontcolor};
 `;
 
-export const Button = (props) => {
+export const Button = (props: Props) => {
   return props.to ? <StyledLink {...props} /> : <StyledButton {...props} />;
 };
 
-export const BorderButton = (props) => {
+export const BorderButton = (props: Props) => {
   return props.to ? (
     <BorderStyledLink {...props} />
   ) : (
